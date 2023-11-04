@@ -17,10 +17,12 @@ This project is meant to help a teacher manage his or her classroom better. Rath
 - Bootstrap for styling and responosiveness
 
 
-## Demo
+## Additional Information
 
-- Website design: 
-- See the live app: [Live app]()
+
+| Prototype | Database Design | Live link |
+| --------- | --------------- | --------- |
+|  [Figma]( https://www.figma.com/proto/ssYZL3bmdSY5Fwi3stWqXx/Student-exam-management-app?type=design&node-id=4-2&t=WxoCtQW1dlOr3iDC-1&scaling=min-zoom&page-id=0%3A1&mode=design )|     [DrawSQL](https://drawsql.app/teams/dylans-useless-team/diagrams/studentexammanagement) | [Render]()|
 
 
 ## Testing The Application Locally
@@ -60,12 +62,7 @@ This project is meant to help a teacher manage his or her classroom better. Rath
     - Paste http://127.0.0.1:5000 on your favourite browser
 
 
-# STUDENT EXAM MANAGEMENT 
-
-| Prototype | Database Design | Live link |
-| --------- | --------------- | --------- |
-|  [Figma]( https://www.figma.com/proto/ssYZL3bmdSY5Fwi3stWqXx/Student-exam-management-app?type=design&node-id=4-2&t=WxoCtQW1dlOr3iDC-1&scaling=min-zoom&page-id=0%3A1&mode=design )|     [DrawSQL](https://drawsql.app/teams/dylans-useless-team/diagrams/studentexammanagement) | [Render]()|
-
+On this special day, I want to take a moment to celebrate not just the day you were born, but the incredible, kind, and amazing person you're becoming. Happy Birthday, 
 ## Roles
 
 ### Dylan:
