@@ -3,7 +3,7 @@ from flask import render_template, flash, redirect, url_for, request
 #from app.forms import LoginForm, ProForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, ExamRecordForm
 from werkzeug.urls import url_parse
 
 
@@ -11,7 +11,8 @@ from werkzeug.urls import url_parse
 @app.route('/home')
 @login_required
 def index():
-    return render_template('index.html', title='Index')
+    form = ExamRecordForm()
+    return render_template('index.html', title='Index', form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

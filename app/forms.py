@@ -30,3 +30,33 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+
+class ExamRecordForm(FlaskForm):
+    """Exam Record Form"""
+    term = SelectField(
+        'Term',
+        choices=[
+            (1, 1),
+            (2, 2),
+            (3, 3)
+        ],
+        validators=[DataRequired(), Length(1, 16)])
+    year_done = SelectField(
+        'Year Done',
+        choices=[
+            (2023, 2023),
+            (2024, 2024)
+        ],
+        validators=[DataRequired(), Length(1, 16)])
+    subjects = SelectField(
+        'Subjects',
+        choices=[
+            ('Math', 'Math'),
+            ('English', 'English'),
+            ('French', 'French')
+        ],
+        validators=[DataRequired(), Length(1, 16)])
+    percentage_score = StringField('Score (%)', validators=[DataRequired()])
+    year_or_grade = StringField('Student\'s Year or Grade', validators=[DataRequired()])
+    submit = SubmitField('Save')
