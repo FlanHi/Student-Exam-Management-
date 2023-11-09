@@ -3,7 +3,91 @@
 {% block content %}
 <br>
 
-<h1>Students Results</h1>
+<div class="my_modal">
+    <!-- Add a new admin -->
+    <button type="button" class="btn btn-secondary p-4 font-weight-bolder" data-bs-toggle="modal" data-bs-placement="top" data-bs-target="#admin-form" title="Add New Admin">Record Exam</button>
+
+                                                    
+    <div class="modal fade" id="admin-form" tabindex="-1" role="dialog" aria-labelledby="admin-form" aria-hidden="true">
+        <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="font-weight-bolder text-primary text-gradient">Save New Exam Record</h3>
+                <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="mb-4">Safely store a student's exam for easy and reliable reference later on.</p>
+                <form role="form text-left" action="" method="post" novalidate>
+                    {{ form.hidden_tag() }}
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">                                                
+                            <div class="form-group position-relative">
+                                {{ form.term.label }} <span class="text-danger">*</span> <br>
+                                {{ form.term(class_='form-control') }}
+                                {% for error in form.term.errors %}
+                                    <span style="color: red;">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="form-group position-relative">
+                                {{ form.year_done.label }} <span class="text-danger">*</span> <br>
+                                {{ form.year_done(class_='form-control') }}
+                                {% for error in form.year_done.errors %}
+                                    <span style="color: red;">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="form-group position-relative">
+                                {{ form.year_or_grade.label }} <span class="text-danger">*</span> <br>
+                                {{ form.year_or_grade(class_='form-control') }}
+                                {% for error in form.year_or_grade.errors %}
+                                    <span style="color: red;">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="form-group position-relative">
+                                {{ form.subjects.label }} <span class="text-danger">*</span> <br>
+                                {{ form.subjects(class_='form-control') }}
+                                {% for error in form.subjects.errors %}
+                                    <span style="color: red;">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-4">
+                            <div class="form-group position-relative">
+                                {{ form.percentage_score.label }} <span class="text-danger">*</span> <br>
+                                {{ form.percentage_score(class_='form-control') }}
+                                {% for error in form.percentage_score.errors %}
+                                    <span style="color: red;">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 mb-4 text-center">
+                            {{ form.submit(class_='btn bg-primary btn-lg btn-rounded w-100 mt-4 mb-0') }}
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End: add admin -->
+</div>
 
 <br>
 

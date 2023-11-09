@@ -10,25 +10,30 @@
         <title>Flask Templates Demo</title>
     {% endif %}    
     <link  href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
 
     <div class="container-fluid text-center bg-light text-dark" style="position: fixed;">
         <div class="row">
-            <div class="col-md-4">
-                <h1><a href=" {{ url_for('index') }} ">Exam Management</a></h1>
-            </div>
-            <div class="col-md-2"></div>
-            <div class="col-md-3">
-                <h1><a href=' {{ url_for("register") }} '>Register</a></h1>
-            </div>
-            <div class="col-md-3">
-                {% if current_user.is_anonymous %}
-                    <h1><a href="{{ url_for('login') }}">Login</a></h1>
-                {% else %}
+            {% if current_user.is_anonymous %}
+                <div class="col-md-4">
+                    <h1><a href=" {{ url_for('index') }} ">Exam Management</a></h1>
+                </div>
+                <div class="col-md-4">
+                    <h1><a href=' {{ url_for("register") }} '>Register</a></h1>
+                </div>
+                <div class="col-md-4">
+                    <h1><a href=' {{ url_for("login") }} '>Login</a></h1>
+                </div>
+            {% else %}
+                <div class="col-md-6">
+                    <h1><a href=" {{ url_for('index') }} ">Exam Management</a></h1>
+                </div>
+                <div class="col-md-6">
                     <h1><a href="{{ url_for('logout') }}">Logout</a></h1>
-                {% endif %}
-            </div>
+                </div>
+            {% endif %}
         </div>
     </div>
     <br>
