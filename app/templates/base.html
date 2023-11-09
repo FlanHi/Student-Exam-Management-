@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <div class="container-fluid text-center bg-light text-dark">
+    <div class="container-fluid text-center bg-light text-dark" style="position: fixed;">
         <div class="row">
             <div class="col-md-4">
                 <h1><a href=" {{ url_for('index') }} ">Exam Management</a></h1>
@@ -26,17 +26,20 @@
                 {% if current_user.is_anonymous %}
                     <h1><a href="{{ url_for('login') }}">Login</a></h1>
                 {% else %}
-                    <a href="{{ url_for('logout') }}">Logout</a>
+                    <h1><a href="{{ url_for('logout') }}">Logout</a></h1>
                 {% endif %}
             </div>
         </div>
     </div>
+    <br>
 
     <body>
         {% for mesg in get_flashed_messages() %}
-        <div style="width: 80%; background-color: rgb(100, 140, 0); display: inline-block;" class="text-dark">
+        <br>
+        <div style="width: 80%; background-color: rgb(255, 255, 0); display: inline-block;" class="text-dark">
             <h1>{{ mesg }}</h1>
         </div>
+        <br>
         {% endfor %}
       </body>
 
