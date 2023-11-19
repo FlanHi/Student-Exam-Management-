@@ -30,8 +30,11 @@
                 <div class="col-md-6">
                     <h1><a href=" {{ url_for('index') }} ">Exam Management</a></h1>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <h1><a href="{{ url_for('logout') }}">Logout</a></h1>
+                </div>
+                <div class="col-md-3">
+                    <a data-bs-toggle="modal" data-bs-placement="top" data-bs-target="#admin-form" title="Add New Admin" id="record-exam-button"><h1>Record Exam</h1></a>
                 </div>
             {% endif %}
         </div>
@@ -41,7 +44,7 @@
     <body>
         {% for mesg in get_flashed_messages() %}
         <br>
-        <div style="width: 80%; background-color: rgb(255, 255, 0); display: inline-block;" class="text-dark">
+        <div style="width: 80%; display: inline-block;" class="text-dark bg-primary">
             <h1>{{ mesg }}</h1>
         </div>
         <br>
@@ -59,7 +62,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+    {{ moment.include_moment()}}
 </body>
 
 <style>
@@ -73,6 +76,10 @@
         color: black;
         display: inline-block;
         text-decoration: none;
+    }
+
+    #record-exam-button:hover {
+        color: rgb(10, 88, 202);
     }
 </style>
 

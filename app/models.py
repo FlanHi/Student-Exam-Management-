@@ -14,6 +14,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128))
     password_hash = db.Column(db.String(128))
+    exams = db.relationship('Exams', backref='author', lazy='dynamic')
 
     def __repr__(self):
         return f'User {self.username}'
@@ -27,9 +28,14 @@ class User(UserMixin, db.Model):
 
 class Exams(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    Term = db.Column(db.Integer, primary_key=True)
-    School = db.Column(db.String(64))
-    Math = db.Column(db.Integer, primary_key=True)
-    English = db.Column(db.Integer, primary_key=True)
-    Comment = db.Column(db.Text, primary_key=True)
-    
+    term = db.Column(db.Integer)
+    name = db.Column(db.String(64))
+    year_done = db.Column(db.String(4))
+    year_or_grade = db.Column(db.String(4))
+    subjects = db.Column(db.String(64))
+    score = db.Column(db.String(4))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return f'Grade: {self.score}'

@@ -5,7 +5,6 @@
 
 <div class="my_modal">
     <!-- Add a new admin -->
-    <button type="button" class="btn btn-secondary p-4 font-weight-bolder" data-bs-toggle="modal" data-bs-placement="top" data-bs-target="#admin-form" title="Add New Admin">Record Exam</button>
 
                                                     
     <div class="modal fade" id="admin-form" tabindex="-1" role="dialog" aria-labelledby="admin-form" aria-hidden="true">
@@ -14,7 +13,7 @@
             <div class="modal-header">
                 <h3 class="font-weight-bolder text-primary text-gradient">Save New Exam Record</h3>
                 <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
+                <span aria-hidden="true">x</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -64,14 +63,27 @@
 
                         <div class="col-lg-12 mb-4">
                             <div class="form-group position-relative">
-                                {{ form.percentage_score.label }} <span class="text-danger">*</span> <br>
-                                {{ form.percentage_score(class_='form-control') }}
-                                {% for error in form.percentage_score.errors %}
+                                {{ form.name.label }} <span class="text-danger">*</span> <br>
+                                {{ form.name(class_='form-control') }}
+                                {% for error in form.name.errors %}
                                     <span style="color: red;">{{error}}</span>
                                 {% endfor %}
                             </div>
                         </div>
 
+                        <div class="col-lg-12 mb-4">
+                            <div class="form-group position-relative">
+                                {{ form.score.label }} <span class="text-danger">*</span> <br>
+                                {{ form.score(class_='form-control') }}
+                                {% for error in form.score.errors %}
+                                    <span style="color: red;">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- <div class="col-lg-12 mb-4 text-center">
+                            <button class="col-md-12 bg-primary border border-primary rounded"><h1>{{ form.submit(class='bg-primary') }}</h1></button>
+                        </div> -->
                         <div class="col-lg-12 mb-4 text-center">
                             {{ form.submit(class_='btn bg-primary btn-lg btn-rounded w-100 mt-4 mb-0') }}
                         </div>
@@ -92,19 +104,36 @@
 <br>
 
 <div class="col-md-12 bg-light">
-
-    <h1>Grades:</h1>
-
-    <div class="col-md-5 border border-dark rounded" style="display: inline-block;">
-        <h1>Year 3:</h1>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th style="font-size: 25px;"> Term </th>
+                    <th style="font-size: 25px;"> Year done </th>
+                    <th style="font-size: 25px;"> Subject </th>
+                    <th style="font-size: 25px;"> Score </th>
+                    <th style="font-size: 25px;"> Year or Grade </th>
+                    <th style="font-size: 25px;"> Name </th>
+                    <th style="font-size: 25px;"> TimeStamp </th>
+                    <th style="font-size: 25px;"> Delete </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exam in exams %}
+                <tr>
+                    <td style="font-size: 25px;"> {{ exam.term }} </td>
+                    <td style="font-size: 25px;"> {{ exam.year_done }} </td>
+                    <td style="font-size: 25px;"> {{ exam.subjects }} </td>
+                    <td style="font-size: 25px;"> {{ exam.score }} </td>
+                    <td style="font-size: 25px;"> {{ exam.year_or_grade }} </td>
+                    <td style="font-size: 25px;"> {{ exam.name }} </td>
+                    <td style="font-size: 25px;"> {{ moment(exam.timestamp).format('ll') }} </td>
+                    <td style="font-size: 25px;"> <a href="{{ url_for('index_exam', id = exam.id) }}" class="text-danger"><img src="{{ url_for('static', filename='images/delete_forever_FILL0_wght400_GRAD0_opsz24.png') }}" width="30px" height="40px"></a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-
-    <div class="col-md-1" style="display: inline-block;"></div>
-
-    <div class="col-md-5 border border-dark rounded" style="display: inline-block;">
-        <h1>Year 4:</h1>
-    </div>
-
 </div>
 
 {% endblock %}

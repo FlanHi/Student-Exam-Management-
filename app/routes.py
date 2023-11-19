@@ -2,17 +2,43 @@ from app import app, db
 from flask import render_template, flash, redirect, url_for, request
 #from app.forms import LoginForm, ProForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.models import User
+from app.models import User, Exams
 from app.forms import LoginForm, RegistrationForm, ExamRecordForm
 from werkzeug.urls import url_parse
 
 
-@app.route('/')
-@app.route('/home')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/home', methods=['GET', 'POST'])
 @login_required
 def index():
     form = ExamRecordForm()
-    return render_template('index.html', title='Index', form=form)
+    if form.validate_on_submit():
+        exam = Exams(
+            subjects=form.subjects.data, 
+            term=form.term.data, 
+            name=form.name.data, 
+            score=form.score.data, 
+            year_done=form.year_done.data, 
+            year_or_grade=form.year_or_grade.data, 
+            author = current_user
+            )
+        db.session.add(exam)
+        db.session.commit()
+        flash('Exam recorded')
+        return redirect(url_for('index'))
+    exams = current_user.exams.order_by(Exams.timestamp.asc()).all()
+    print(exams)
+    return render_template('index.html', title='Index', form=form, exams=exams)
+
+
+@app.route('/home/<int:id>', methods=['GET', 'POST'])
+def index_exam(id):
+    exam = Exams.query.filter_by(id=id).first()
+    db.session.delete(exam)
+    db.session.commit()
+    flash('Deleted Recorded exam')
+    return redirect(url_for('index'))
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
