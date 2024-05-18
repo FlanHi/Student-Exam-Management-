@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<br>
 
 <div class="my_modal">
     <!-- Add a new admin -->
@@ -10,13 +9,13 @@
     <div class="modal fade" id="admin-form" tabindex="-1" role="dialog" aria-labelledby="admin-form" aria-hidden="true">
         <div class="modal-dialog modal- modal-dialog-centered modal-" role="document">
             <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="font-weight-bolder text-primary text-gradient">Save New Exam Record</h3>
+            <div class="modal-header bg-dark    ">
+                <h3 class="font-weight-bolder text-primary text-gradient bg-dark ">Save New Exam Record</h3>
                 <button type="button" class="btn-close text-dark" data-bs-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">x</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body bg-dark">
                 <p class="mb-4">Safely store a student's exam for easy and reliable reference later on.</p>
                 <form role="form text-left" action="" method="post" novalidate>
                     {{ form.hidden_tag() }}
@@ -91,7 +90,7 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer bg-dark">
                 <button type="button" class="btn btn-link  ml-auto" data-bs-dismiss="modal">Close</button>
             </div>
             </div>
@@ -102,38 +101,54 @@
 </div>
 
 <br>
+<br>
+<br>
 
-<div class="col-md-12 bg-light">
-    <div class="table-responsive">
-        <table class="table table-hover table-bordered">
-            <thead>
-                <tr>
-                    <th style="font-size: 25px;"> Term </th>
-                    <th style="font-size: 25px;"> Year done </th>
-                    <th style="font-size: 25px;"> Subject </th>
-                    <th style="font-size: 25px;"> Score </th>
-                    <th style="font-size: 25px;"> Year or Grade </th>
-                    <th style="font-size: 25px;"> Name </th>
-                    <th style="font-size: 25px;"> TimeStamp </th>
-                    <th style="font-size: 25px;"> Delete </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for exam in exams %}
-                <tr>
-                    <td style="font-size: 25px;"> {{ exam.term }} </td>
-                    <td style="font-size: 25px;"> {{ exam.year_done }} </td>
-                    <td style="font-size: 25px;"> {{ exam.subjects }} </td>
-                    <td style="font-size: 25px;"> {{ exam.score }} </td>
-                    <td style="font-size: 25px;"> {{ exam.year_or_grade }} </td>
-                    <td style="font-size: 25px;"> {{ exam.name }} </td>
-                    <td style="font-size: 25px;"> {{ moment(exam.timestamp).format('ll') }} </td>
-                    <td style="font-size: 25px;"> <a href="{{ url_for('index_exam', id = exam.id) }}" class="text-danger"><img src="{{ url_for('static', filename='images/delete_forever_FILL0_wght400_GRAD0_opsz24.png') }}" width="30px" height="40px"></a> </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+
+<section class="intro">
+      <div class="mask d-flex align-items-center h-100 bg-dark">
+        <div class="container bg-dark">
+          <div class="row justify-content-center bg-dark">
+            <div class="col-12 bg-dark">
+              <div class="card mask-custom bg-dark" style="box-shadow: rgba(0, 122, 243, 0.853) 0px 8px 24px;">
+                <div class="card-body" >
+                  <div class="table-responsive" >
+                    <table class="table table-borderless text-light mb-0 bg-dark"  >
+                      <thead>
+                        <tr>
+                          <th scope="col">NAME</th>
+                          <th scope="col">SUBJECT</th>
+                          <th scope="col">YEAR OR GRADE</th>
+                          <th scope="col">YEAR DONE</th>
+                          <th scope="col">SCORE</th>
+                          <th scope="col">TERM</th>
+                          <th scope="col">TIMESTAMP</th>
+                          <th scope="col">DELETE</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for exam in exams %}
+                        <tr>
+                          <th scope="row">{{ exam.name }}</th>
+                          <td>{{ exam.subjects }}</td>
+                          <td>{{ exam.year_or_grade }}</td>
+                          <td>{{ exam.year_done }}</td>
+                          <td>{{ exam.score }}</td>
+                          <td>{{ exam.term }}</td>
+                          <td>{{ moment(exam.timestamp).format('ll') }}</td>
+                          <td><a href="{{ url_for('index_exam', id = exam.id) }}" class="text-danger w-75 h-100"><img src="{{ url_for('static', filename='images/delete_forever_FILL0_wght400_GRAD0_opsz24.png') }}" ></a></td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </section>
 
 {% endblock %}

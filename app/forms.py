@@ -1,8 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, BooleanField, SelectField
-from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, SelectField, TextAreaField
+from wtforms.validators import DataRequired, Length, EqualTo, ValidationError, Email, EqualTo
 from app.models import User
 
+class EditProfileForm(FlaskForm):
+    """Login Form"""
+    username = StringField('Username', validators=[DataRequired(), Length(1, 16)])
+    about_me = TextAreaField('About me', validators=[Length(min=0, max=140)])
+    submit = SubmitField('Edit profile')
 
 
 class LoginForm(FlaskForm):
@@ -47,3 +52,14 @@ class ExamRecordForm(FlaskForm):
     year_or_grade = StringField('Student\'s Year or Grade', validators=[DataRequired()])
     name = StringField('Student\'s name', validators=[DataRequired()])
     submit = SubmitField('Save')
+
+class ResetPasswordRequestForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField("Request Password Reset")
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField(
+        'Confirm password', validators=[DataRequired(), EqualTo('password')]
+    )
+    submit = SubmitField('Reset Password')
